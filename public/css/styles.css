@@ -1,0 +1,79 @@
+body
+{
+  text-align: center;
+  background: black;
+  margin: 0px;
+  color: white;
+  font-family: 'Archivo', sans-serif;
+  background-color: black;
+}
+
+#financeVideo
+{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height:100vh;
+  z-index: -1;
+}
+/*#0C0032 #190061 #240090 #3500D3 #282828  */
+#title
+{
+  background-color: rgba(0,0,0, 0.9);
+  height: 75vh;
+  padding-top: 25vh;
+  color: #00BDFF;
+}
+
+#title-name
+{
+  font-weight: 700;
+  font-size: 75px;
+  margin-bottom: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #00BDFF;
+  transition: all 0.5s;
+}
+nav a:visited {text-decoration: none; color: #00BDFF;}
+nav a:hover {color: grey;}
+
+
+#menu ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  float: right;
+  padding: 15px;
+}
+
+#menu ul li {
+  float: right;
+  padding-right: 25px;
+}
+
+#title-subname
+{
+  font-weight: 400;
+  margin-top: 0px;
+  color: white;
+}
+
+input
+{
+  border-radius: 25px;
+  width: 400px;
+  outline: 0;
+  height: 18px;
+}
+
+button
+{
+  border-radius:25px;
+  height: 25px;
+}

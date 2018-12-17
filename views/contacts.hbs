@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>&#332;kami Sanctions Solutions</title>
+    <link rel='stylesheet' type='text/css' href='css/styles.css' media='screen' />
+  </head>
+  <style>
+  #section-title, #section p {
+      position: relative;
+      left: 20vw;
+      max-width: 50vw;
+
+  }
+
+  #section-paragraph {
+    text-align: left;
+  }
+
+  #section {
+    top: 25vh;
+    left: 0;
+    padding: 15px;
+    position: absolute;
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url('photo/skyscraper.jpg');
+    width: 100%;
+    text-align: left;
+  }
+
+  #logo-name {
+    position: relative;
+    float: left;
+    color: #00BDFF;
+    font-size: 40px;
+    margin-left: 15px;
+    transition: all 1s;
+    top:-15px;
+  }
+  #logo-name:hover {
+    color: #FFFFFF;
+  }
+
+  #menu ul
+  {
+    position: relative;
+    top: -20px;
+  }
+  body {
+    background-color: black;
+    max-width: 100%;
+
+  }
+  </style>
+  <body>
+    {{> title}}
+    {{> navbar}}
+    <div id='section'>
+    <h1 id="section-title"><i>Contact &#332;kami</i></h1>
+      <p>&#332;kami was built by Allister Bernal, who has worked as researcher and analysts for the Bank of Tokyo-Mitsubishi UFJ,
+        Promontory Financial Group, Western Union and Visa Inc. He is currently pursuing software solutions to help innovate the financial/compliance field.
+      </p>
+      <p id="section-paragraph">For any questions and/or feedback, please contact us at ageebernal@aol.com.</i>
+      </p>
+  </body>
+</html>
