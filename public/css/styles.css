@@ -13,14 +13,14 @@ body
   position: fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%;
+  min-width: 100vw;
   min-height:100vh;
   z-index: -1;
 }
 /*#0C0032 #190061 #240090 #3500D3 #282828  */
 #title
 {
-  background-color: rgba(0,0,0, 0.9);
+  background-color: rgba(0,0,0, 0.5);
   height: 75vh;
   padding-top: 25vh;
   color: #00BDFF;

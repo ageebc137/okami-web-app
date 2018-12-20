@@ -39,11 +39,15 @@ app.get(('/'), (req, res) => {
 
 app.get(('/about'), (req, res) => {
   res.render('about.hbs');
-})
+});
 
 app.get(('/contacts'), (req, res) => {
   res.render('contacts.hbs');
-})
+});
+
+app.get(('/results'), (req, res) => {
+  res.render('results.hbs');
+});
 
 
 app.listen(port, () => {
