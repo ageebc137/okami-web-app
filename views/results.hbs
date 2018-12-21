@@ -4,6 +4,7 @@
     <meta charset='utf-8'>
     <title>&#332;kami Sanctions Solutions</title>
     <link rel='stylesheet' type='text/css' href='css/styles.css' media='screen' />
+    <link rel='stylesheet' type='text/css' href='css/results.css' media='screen' />
   </head>
   <style>
   #section-title, #section p {
@@ -64,6 +65,10 @@
     color: black;
 
   }
+/*CSS styles from CarmenSS.html*/
+
+
+
   </style>
   <body>
     <header>
@@ -74,8 +79,32 @@
     </form>
     {{> navbar}}
   </header>
-  <ul id="results">
-  </ul>
+  <p id='resultsMessage'>No results found</p>
+  <div id ="resultsSection">
+  <div id="displayResults">
+    <table id='table-results'>
+      <thead id='table-headers'>
+        <th>Name</th>
+        <th>SDN Type</th>
+        <th>Query</th>
+      </thead>
+
+    </table>
+  <div id='scrollList'>
+    <table id="listResults">
+    </table>
+  </div>
+    </div>
+  <div id='profile'>
+    <ul id='details'></ul>
+    <table id='identifications'>
+    </table>
+    <table id='aliases'>
+    </table>
+    <table id='addresses'>
+    </table>
+  </div>
+</div>
   </body>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="functions/results.js"></script>

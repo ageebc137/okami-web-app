@@ -1,0 +1,132 @@
+#listResults, #results {
+  visibility: hidden;
+  transition: all 1s;
+}
+#listResults, #table-results {
+  visibility: visible;
+  position: relative;
+}
+#displayResults {
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+
+#scrollList {
+  width: 100%;
+  height: 700px;
+  overflow-y: auto;
+  border-style: solid;
+  border-width: thin;
+  background-color:#282828;
+
+}
+#listResults, #table-results{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  height: auto;
+  color: white;
+  transition: all 5s;
+  z-index: 0;
+  table-layout: fixed;
+}
+
+
+#scrollList tr:hover td{
+  background: #4783FC;
+  cursor: pointer;
+}
+#table-results thead {
+  visibility: hidden;
+}
+
+#table-results thead{
+  visibility: visible;
+}
+
+#scrollList td, #table-results th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+  background-color: #282828;
+  transition: all 0.5s;
+}
+
+#table-results th{
+  background-color: black;
+  text-align: center;
+}
+
+#message {
+  height: 50%;
+  width: 100%;
+  visibility: hidden;
+  text-align: center;
+}
+
+#message p {
+  margin: 0px;
+  padding: 15px;
+  font-weight: bold;
+}
+#message{
+  visibility: visible;
+}
+#dashboard {
+  display: inline-block;
+  width: 100%;
+}
+
+#profile {
+  visibility: hidden;
+}
+#profile {
+  height: 775px;
+  width: 48%;
+  float: right;
+  visibility: visible;
+  text-align: center;
+  margin-left: 5px;;
+
+}
+#searchResults {
+  float: left;
+  width: 50%;
+}
+
+
+#profile ul {
+  list-style-type: none;
+  padding: 0;
+  border-top: 10px;
+  border-bottom: 10px;
+  border-color: black;
+  border-style: solid;
+  border-left: 0px;
+  border-right: 0px;
+}
+#profile img{
+  position: relative;
+  width: 100px;
+  float: right;
+  background-color: white;
+  border-radius: 25%;
+}
+#profile ul, table {
+  width: 90%;
+  text-align: left;
+  padding-left: 20px;
+
+}
+#profile table{
+  border-collapse: collapse;
+}
+#profile thead {
+  background-color: black;
+
+}
+
+#resultsSection {
+display: inline-block;
+}
