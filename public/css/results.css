@@ -13,7 +13,7 @@
 }
 
 #scrollList {
-  width: 100%;
+  width: 99.7%;
   height: 700px;
   overflow-y: auto;
   border-style: solid;
@@ -87,7 +87,8 @@
   float: right;
   visibility: visible;
   text-align: center;
-  margin-left: 5px;;
+  margin-left: 5px;
+  background-color: grey;
 
 }
 #searchResults {
@@ -129,4 +130,11 @@
 
 #resultsSection {
 display: inline-block;
+}
+
+#listResults tbody{
+  font-size: 12px;
+}
+#resultsSection, #resultsMessage, footer {
+  background-color: #00BDFF;
 }
