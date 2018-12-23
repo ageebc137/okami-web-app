@@ -7,19 +7,21 @@
   position: relative;
 }
 #displayResults {
-  width: 50%;
+  width: 48%;
   text-align: center;
   float: left;
+  margin-left: 1%;
+  height: 100%;
+  opacity: 0.8;
 }
 
 #scrollList {
-  width: 99.7%;
-  height: 700px;
+  width: 100%;
+  height: 95%;
   overflow-y: auto;
-  border-style: solid;
-  border-width: thin;
   background-color:#282828;
-
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 #listResults, #table-results{
   font-family: arial, sans-serif;
@@ -37,13 +39,6 @@
   background: #4783FC;
   cursor: pointer;
 }
-#table-results thead {
-  visibility: hidden;
-}
-
-#table-results thead{
-  visibility: visible;
-}
 
 #scrollList td, #table-results th {
   border: 1px solid black;
@@ -51,11 +46,15 @@
   padding: 8px;
   background-color: #282828;
   transition: all 0.5s;
+  border: none;
+  border-bottom: 2px dotted grey;
 }
 
 #table-results th{
-  background-color: black;
+  background-color: #202020;
   text-align: center;
+  border: none;
+  font-weight: normal;
 }
 
 #message {
@@ -79,16 +78,16 @@
 }
 
 #profile {
-  visibility: hidden;
-}
-#profile {
-  height: 775px;
+  height: 100%;
   width: 48%;
   float: right;
   visibility: visible;
   text-align: center;
   margin-left: 5px;
-  background-color: grey;
+  background-color: black;
+  margin-right: 1%;
+  border-radius: 20px;
+  opacity: 0.8;
 
 }
 #searchResults {
@@ -135,6 +134,26 @@ display: inline-block;
 #listResults tbody{
   font-size: 12px;
 }
-#resultsSection, #resultsMessage, footer {
-  background-color: #00BDFF;
+#resultsSection{
+  height: 80vh;
+}
+#table-top {
+  height: 5%;
+}
+
+#name-header {
+  border-top-left-radius: 20px;
+}
+#query-header {
+  border-top-right-radius: 20px;
+}
+header {
+  background-color: black;
+  width: 100%;
+  height: 3em;
+  padding-top: 1vh;
+}
+
+body {
+  background-color: blue;
 }

@@ -18,7 +18,7 @@ function searchResults(e) {
     localStorage.setItem('results', JSON.stringify(res.data.results));
     //Display results message based on response.
     if (res.data.results.length == 0) {
-      resultsMessage.innerHTML = `No results for <b><i>${query}</i></b>`;
+      resultsMessage.innerHTML = `No results for <b><i>${query}</i></b>. Please conduct another search.`;
     }else{
       resultsMessage.innerHTML = `Your results for <b><i>${query}</i></b>`;
 

@@ -7,26 +7,7 @@
     <link rel='stylesheet' type='text/css' href='css/results.css' media='screen' />
   </head>
   <style>
-  #section-title, #section p {
-      position: relative;
-      left: 20vw;
-      max-width: 50vw;
 
-  }
-
-  #section-paragraph {
-    text-align: left;
-  }
-
-  #section {
-    top: 25vh;
-    left: 0;
-    padding: 15px;
-    position: absolute;
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url('photo/skyscraper.jpg');
-    width: 100%;
-    text-align: left;
-  }
 
   #logo-name {
     position: relative;
@@ -37,6 +18,7 @@
     transition: all 1s;
     top: -23px;
   }
+
   #logo-name:hover {
     color: #FFFFFF;
   }
@@ -53,19 +35,18 @@
     top: -20px;
   }
 
-  header {
-    background-color: black;
-    width: 100%;
-    height: 3em;
-    padding-top: 1vh;
-  }
 
   body {
-    background-color: white;
-    color: black;
+    background-image: linear-gradient(135deg, #00BDFF, grey);
+    height: 100vh;
 
   }
-/*CSS styles from CarmenSS.html*/
+
+  footer {
+    margin-top: 5vh;
+    margin-left: 2%;
+    font-size: 10px;
+  }
 
 
 
@@ -82,22 +63,26 @@
   <p id='resultsMessage'>No results found</p>
   <div id ="resultsSection">
   <div id="displayResults">
+    <div id="table-top">
     <table id='table-results'>
       <thead id='table-headers'>
-        <th>Name</th>
+        <th id="name-header">Name</th>
         <th>Type</th>
         <th>Sanctions Program</th>
-        <th>Query</th>
+        <th id='query-header'>Query</th>
       </thead>
 
     </table>
+  </div>
   <div id='scrollList'>
     <table id="listResults">
     </table>
   </div>
     </div>
   <div id='profile'>
-    <ul id='details'></ul>
+    <ul id='details'>
+      <p>Please select a result hit.</p>
+    </ul>
     <table id='identifications'>
     </table>
     <table id='aliases'>
