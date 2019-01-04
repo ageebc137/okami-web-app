@@ -1,5 +1,5 @@
-let queryField = document.querySelector('#searchName');
-
+let queryField = document.querySelector(`#searchName`);
+console.log(queryField);
 
 let getQuery = function(e) {
   e.preventDefault();
@@ -9,3 +9,14 @@ let getQuery = function(e) {
 }
 
 queryField.addEventListener('submit', getQuery);
+
+let bulkBtn = document.querySelector('#bulkSearch');
+
+
+function bulkSearch(e) {
+  e.preventDefault();
+  console.log(this);
+  window.location.href = '/bulksearch';
+}
+
+bulkBtn.addEventListener('click', bulkSearch);

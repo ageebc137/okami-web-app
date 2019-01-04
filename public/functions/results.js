@@ -5,14 +5,25 @@ let results = document.querySelector('#listResults'),
 
 
 
-function searchResults(e) {
+function searchForResults(e) {
   //Prevent a refresh of the page.
   e.preventDefault();
   //set the query to either the home page's or the result's
-  let query = searchBox.querySelector('input').value || localStorage.getItem('query');
-      queryURI = encodeURIComponent(query),
-      querycodeUrl = `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&q=${queryURI}`;
+  let query = searchBox.querySelector('input').value || (localStorage.getItem('query') || localStorage.getItem('bulkQuery'));
+  console.log(query);
 
+if () {
+
+}
+  searchOne(query);
+
+
+}
+
+function searchOne(query) {
+  let  queryURI = encodeURIComponent(query),
+        querycodeUrl =
+        `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&q=${queryURI}`;
   axios.get(querycodeUrl).then((res) => {
     //Store response data into local storage.
     localStorage.setItem('results', JSON.stringify(res.data.results));
@@ -26,6 +37,7 @@ function searchResults(e) {
 
     //Display list of results in table.
     displayResults(res, query);
+    localStorage.removeItem('query');
 
   }).catch(err => console.log(err));
 }
@@ -63,5 +75,5 @@ function displayProfile(id) {
   document.querySelector('#details').innerHTML = details;
 }
 
-window.onload = searchResults;
-searchBox.addEventListener('submit', searchResults);
+window.onload = searchForResults;
+searchBox.addEventListener('submit', searchForResults);
