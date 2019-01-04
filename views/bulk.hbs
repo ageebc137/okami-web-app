@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>&#332;kami Sanctions Solutions</title>
+    <link rel='stylesheet' type='text/css' href='css/styles.css' media='screen' />
+    <link href="https://fonts.googleapis.com/css?family=Archivo:400,500,600,700" rel="stylesheet">
+  </head>
+  <style>
+  #logo-name {
+    position: relative;
+    float: left;
+    color: #00BDFF;
+    font-size: 40px;
+    margin-left: 15px;
+    transition: all 1s;
+    top:-15px;
+  }
+  #logo-name:hover {
+    color: #FFFFFF;
+  }
+  #menu ul
+  {
+    position: relative;
+    top: -20px;
+  }
+  #searchSection {
+    padding-top: 10vh;
+
+  }
+  #inputSection li {
+    margin: 1vh;
+    list-style: none;
+  }
+  </style>
+
+  <body>
+    <video autoplay muted loop id='financeVideo'>
+      <source src='video/earthpurpleedit.mp4' type='video/mp4'>
+      Your broswer does not support HTML5 video.
+    </video>
+    {{> title}}
+    {{> navbar}}
+    <div id="searchSection">
+      <button type="button" id="add-button">Add ➕</button>
+      <button type="button"  id="remove-button">Remove 🗑️</button>
+      <button type="button" id="search-button">Search 🔍</button>
+      <ul id='inputSection'>
+        <li><input type="textarea" placeholder=' Search entity or individual here' id='searchInput' /required></li>
+        <li><input type="textarea" placeholder=' Search entity or individual here' id='searchInput' /required></li>
+      </ul>
+    </div>
+  </body>
+  <script src='functions/bulkSearch.js'></script>
+</html>
