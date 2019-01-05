@@ -12,7 +12,7 @@ function toggle(e) {
 }
 
 function addQuery() {
-  if (querySection.childElementCount >= 10) {return;}
+  if (querySection.childElementCount >= 20) {return;}
   let input = document.createElement('li');
   input.innerHTML = `<input type="textarea" placeholder=' Search entity or individual here' id='searchInput' /required>`;
   querySection.appendChild(input);
@@ -29,7 +29,10 @@ function searchQueries(e) {
   let queries = document.querySelectorAll(`ul[id='inputSection'] > li`);
   let array = [];
   queries.forEach(query => array.push(query.firstChild.value));
-  localStorage.setItem('bulkQuery', array);
+  localStorage.setItem('searchItem', JSON.stringify({
+    type: 'bulk',
+    query: array
+  }));
   window.location.href = '/results';
 }
 

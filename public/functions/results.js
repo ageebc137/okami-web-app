@@ -9,16 +9,55 @@ function searchForResults(e) {
   //Prevent a refresh of the page.
   e.preventDefault();
   //set the query to either the home page's or the result's
-  let query = searchBox.querySelector('input').value || (localStorage.getItem('query') || localStorage.getItem('bulkQuery'));
-  console.log(query);
+  let searchItem = {};
+  if (searchBox.querySelector('input').value) {
+    searchItem.type = 'single';
+    searchItem.query = searchBox.querySelector('input').value;
+  }else if (localStorage.getItem('searchItem')) {
+    searchItem = JSON.parse(localStorage.getItem('searchItem'));
+  }else {
+    return;
+  }
 
-if () {
+  searchItem.type === 'bulk' ? searchMany(searchItem.query) : searchOne(searchItem.query);
 
+  localStorage.removeItem('searchItem');
 }
-  searchOne(query);
 
+function searchMany(queryArray) {
 
+  let promiseArray = queryArray.filter(query => query !== '').map(query => {
+    let  queryURI = encodeURIComponent(query),
+          querycodeUrl =
+          `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&q=${queryURI}`;
+          return axios.get(querycodeUrl)
+  });
+  Promise.all(promiseArray).then((responseArray) => {
+    responseArray = responseArray.map((res, i) => {
+      return {
+        res,
+        query: queryArray[i]
+      }
+    });
+    console.log(responseArray);
+    resultsMessage.innerHTML = 'Your bulk search results are listed below';
+
+    results.innerHTML = responseArray.map(response => {
+        return response.res.data.results.map((sdn) => {
+          return `
+            <tr onclick="displayProfile('${sdn.id}')" id='${sdn.id}'>
+              <td>${sdn.name}</td>
+              <td>${sdn.type || 'N/A'}</td>
+              <td>${sdn.source}</td>
+              <td><i>${response.query}</i></td>
+            </tr>
+            `;
+       }).join('');
+    }).join('');
+
+  });
 }
+
 
 function searchOne(query) {
   let  queryURI = encodeURIComponent(query),
@@ -32,12 +71,10 @@ function searchOne(query) {
       resultsMessage.innerHTML = `No results for <b><i>${query}</i></b>. Please conduct another search.`;
     }else{
       resultsMessage.innerHTML = `Your results for <b><i>${query}</i></b>`;
-
     }
-
     //Display list of results in table.
     displayResults(res, query);
-    localStorage.removeItem('query');
+    // localStorage.removeItem('searchItem');
 
   }).catch(err => console.log(err));
 }

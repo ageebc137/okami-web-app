@@ -4,7 +4,10 @@ console.log(queryField);
 let getQuery = function(e) {
   e.preventDefault();
   let query = this.querySelector('input').value;
-  localStorage.setItem('query', query);
+  localStorage.setItem('searchItem', JSON.stringify({
+    type: 'single',
+    query
+  }));
   window.location.href = '/results';
 }
 
