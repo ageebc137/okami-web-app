@@ -43,7 +43,7 @@
 #scrollList td, #table-results th {
   border: 1px solid black;
   text-align: left;
-  padding: 8px;
+  padding: 12px;
   background-color: #282828;
   transition: all 0.5s;
   border: none;
