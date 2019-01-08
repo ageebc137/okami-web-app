@@ -4,7 +4,7 @@ const yargs = require('yargs');
 
 var app = express();
 
-let port = 3000;
+let port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 hbs.registerPartials(__dirname + '/views/partials');
