@@ -111,7 +111,7 @@ function displayProfile(id) {
     let programs = sdn.programs.map(program => program).join('; ');
 
     details = `
-      <img src='../public/logos/${sdn.type}-icon.png' alt='${sdn.type} logo'>
+      <img src='../public/logos/${sdn.type.toLowerCase()}-icon.png' alt='${sdn.type} logo'>
       <li id='type'><b>Type:</b> ${sdn.type}</li>
       <li id='fullName'><b>Full Name:</b> ${sdn.name}</li>
       <li id='listDesignation'><b>List:</b> ${sdn.source}</li>
