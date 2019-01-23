@@ -66,7 +66,7 @@ function searchMany(queryArray) {
 function searchOne(query) {
   let  queryURI = encodeURIComponent(query),
         querycodeUrl =
-        `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&q=${queryURI}`;
+        `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&name=${queryURI}&fuzzy_name=true`;
   axios.get(querycodeUrl).then((res) => {
     //Store response data into local storage.
     localStorage.setItem('results', JSON.stringify(res.data.results));
