@@ -4,14 +4,15 @@ const express = require('express');
 const hbs = require('hbs');
 const yargs = require('yargs');
 const path = require('path');
-const axios = require('axios')
+const axios = require('axios');
+const bodyParser = require('body-parser');
 
 var app = express();
 var publicPath = path.join(__dirname, '../public');
 var partialsPath = path.join(__dirname, '../views/partials');
 let port = process.env.PORT;
 
-
+app.use(bodyParser.json());
 app.use(express.static(publicPath));
 hbs.registerPartials(partialsPath);
 
@@ -32,7 +33,9 @@ app.get(('/login'), (req, res) => {
 });
 
 app.post(('/search'), (req, res) => {
-  res.send('chicken');
+  axios.get(`${process.env.TRADEGOV}${process.env.TRADEGOV_API}&name=${req.body.queryURI}&fuzzy_name=true`).then((response) => {
+    res.send(response.data);
+  });
 });
 
 

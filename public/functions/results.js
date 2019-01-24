@@ -64,12 +64,10 @@ function searchMany(queryArray) {
 
 
 function searchOne(query) {
-  let  queryURI = encodeURIComponent(query),
-        querycodeUrl =
-        `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&name=${queryURI}&fuzzy_name=true`;
+  let  queryURI = encodeURIComponent(query);
 
-
-  axios.get(querycodeUrl).then((res) => {
+  axios.post('https://okami-sanctions.herokuapp.com/search', {queryURI}).then((res) => {
+    console.log(res);
     //Store response data into local storage.
     localStorage.setItem('results', JSON.stringify(res.data.results));
     //Display results message based on response.
