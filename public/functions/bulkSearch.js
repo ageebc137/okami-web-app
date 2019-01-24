@@ -14,7 +14,7 @@ function toggle(e) {
 function addQuery() {
   if (querySection.childElementCount >= 20) {return;}
   let input = document.createElement('li');
-  input.innerHTML = `<input type="textarea" placeholder=' Search entity or individual here' id='searchInput' /required>`;
+  input.innerHTML = `<input type="textarea" placeholder=' Search entity or individual here' id='searchInput' autocomplete ="off" required/>`;
   querySection.appendChild(input);
 }
 
