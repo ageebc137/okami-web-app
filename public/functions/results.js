@@ -29,7 +29,7 @@ function searchMany(queryArray) {
   let promiseArray = queryArray.filter(query => query !== '').map(query => {
     let  queryURI = encodeURIComponent(query),
           querycodeUrl =
-          `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&q=${queryURI}`;
+          `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&name=${queryURI}&fuzzy_name=true`;
           return axios.get(querycodeUrl)
   });
   Promise.all(promiseArray).then((responseArray) => {
@@ -67,6 +67,8 @@ function searchOne(query) {
   let  queryURI = encodeURIComponent(query),
         querycodeUrl =
         `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&name=${queryURI}&fuzzy_name=true`;
+
+
   axios.get(querycodeUrl).then((res) => {
     //Store response data into local storage.
     localStorage.setItem('results', JSON.stringify(res.data.results));
@@ -104,7 +106,9 @@ function displayProfile(id) {
       identifications,
       aliases,
       addresses;
-  if ('type' in sdn) {
+      console.log(sdn);
+  let source = sdn.source;
+  if (source === "Specially Designated Nationals (SDN) - Treasury Department") {
 
     let placesOfBirth = sdn.places_of_birth.map(place => place).join('; ');
     let dateOfBirth = sdn.dates_of_birth.map(date => date).join('; ');
@@ -184,7 +188,7 @@ function displayProfile(id) {
            `;
          }).join('');
 
-  }else{
+  }else if (source === "Entity List (EL) - Bureau of Industry and Security"){
     details = `
       <li id='fullName'><b>Full Name:</b> ${sdn.name}
       <li id='program'><b>Program:</b> ${sdn.source}</li>
@@ -199,7 +203,7 @@ function displayProfile(id) {
         <th><u>Postal Code</u></th>
         <th><u>Country</u></th>
       </thead>
-    ` + sdn.addresses.map(address => {
+    ` + (sdn.addresses.map(address => {
        return `
        <tr>
          <td>${address.address || ''}</td>
@@ -209,9 +213,36 @@ function displayProfile(id) {
          <td>${address.country || ''}</td>
        </tr>
        `;
+     }).join('') || "" );
+
+  }else{
+    details = `
+      <li id='fullName'><b>Full Name:</b> ${sdn.name}
+      <li id='program'><b>Program:</b> ${sdn.source}</li>
+    `;
+    identifications = `
+    <thead>
+      <th><u>ID #</u></th>
+    </thead>
+    <tr>
+     <td>${sdn.id}</td>
+    </tr>`;
+    aliases = sdn.alt_names.map((name, i) => {
+      let header = ``;
+        if (i == 0) {
+          header = `
+            <thead>
+              <th><u>Aliases</u></th>
+            </thead>
+          `
+        }
+       return header + `
+       <tr>
+         <td>${name}</td>
+       </tr>
+       `;
      }).join('');
-
-
+     addresses = '';
 
   }
 
