@@ -38,6 +38,18 @@ app.post(('/search'), (req, res) => {
   });
 });
 
+app.post(('/searchmany'), (req, res) => {
+
+  let promiseArray = req.body.queryArray.filter(query => query !== '').map(query => {
+    let  queryURI = encodeURIComponent(query),
+          querycodeUrl =
+          `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&name=${queryURI}&fuzzy_name=true`;
+          // return axios.get(querycodeUrl)
+          return querycodeUrl;
+  });
+  res.send(promiseArray);
+});
+
 
 app.get(('/results'), (req, res) => {
   res.render('results.hbs');
