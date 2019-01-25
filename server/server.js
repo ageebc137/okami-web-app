@@ -43,11 +43,19 @@ app.post(('/searchmany'), (req, res) => {
   let promiseArray = req.body.queryArray.filter(query => query !== '').map(query => {
     let  queryURI = encodeURIComponent(query),
           querycodeUrl =
-          `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&name=${queryURI}&fuzzy_name=true`;
+          `${process.env.TRADEGOV}${process.env.TRADEGOV_API}&name=${queryURI}&fuzzy_name=true`;
           // return axios.get(querycodeUrl)
-          return querycodeUrl;
+          return axios.get(querycodeUrl);
   });
-  res.send(promiseArray);
+  Promise.all(promiseArray).then((responseArray) => {
+    responseArray = responseArray.map((res, i) => {
+      return {
+        result: res.data,
+        query: req.body.queryArray[i]
+      }
+      });
+  res.send(responseArray);
+});
 });
 
 

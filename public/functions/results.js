@@ -26,25 +26,16 @@ function searchForResults(e) {
 
 function searchMany(queryArray) {
 
-  let promiseArray = queryArray.filter(query => query !== '').map(query => {
-    let  queryURI = encodeURIComponent(query),
-          querycodeUrl =
-          `https://api.trade.gov/consolidated_screening_list/search?api_key=lVRffURh533foYGOFnvH6gnA&name=${queryURI}&fuzzy_name=true`;
-          return axios.get(querycodeUrl)
-  });
-  Promise.all(promiseArray).then((responseArray) => {
-    responseArray = responseArray.map((res, i) => {
-      return {
-        res,
-        query: queryArray[i]
-      }
-    });
-    console.log(responseArray);
+  // //localhost:3000/searchmany
+  // https://okami-sanctions.herokuapp.com/searchmany
+  axios.post('https://okami-sanctions.herokuapp.com/searchmany', {queryArray}).then((res) => {
+    let responseArray = res.data;
     resultsMessage.innerHTML = 'Your bulk search results are listed below';
     resultsStorage = [];
+    console.log(responseArray);
 
     results.innerHTML = responseArray.map(response => {
-        return response.res.data.results.map((sdn) => {
+        return response.result.results.map((sdn) => {
           resultsStorage.push(sdn);
           return `
             <tr onclick="displayProfile('${sdn.id}')" id='${sdn.id}'>
@@ -59,13 +50,15 @@ function searchMany(queryArray) {
     console.log(resultsStorage);
     localStorage.setItem('results', JSON.stringify(resultsStorage));
   });
+
 }
 
 
 
 function searchOne(query) {
   let  queryURI = encodeURIComponent(query);
-
+  // //localhost:3000/search
+  // https://okami-sanctions.herokuapp.com/search
   axios.post('https://okami-sanctions.herokuapp.com/search', {queryURI}).then((res) => {
     console.log(res);
     //Store response data into local storage.
