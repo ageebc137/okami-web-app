@@ -66,9 +66,16 @@ function searchOne(query) {
     //Display results message based on response.
     if (res.data.results.length == 0) {
       resultsMessage.innerHTML = `No results for <b><i>${query}</i></b>. Please conduct another search.`;
+      document.querySelector('#details').innerHTML = `<p>No results listed</p>`;
+
     }else{
       resultsMessage.innerHTML = `Your results for <b><i>${query}</i></b>`;
+      document.querySelector('#details').innerHTML = `<p>Please select a result in the listing</p>`;
     }
+      document.querySelector('#identifications').innerHTML = ``;
+      document.querySelector('#aliases').innerHTML = ``;
+      document.querySelector('#addresses').innerHTML = ``;
+      document.querySelector('#source').innerHTML = ``;
     //Display list of results in table.
     displayResults(res, query);
     // localStorage.removeItem('searchItem');
