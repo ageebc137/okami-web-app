@@ -5,7 +5,11 @@ const hbs = require('hbs');
 const yargs = require('yargs');
 const path = require('path');
 const axios = require('axios');
+const mongoose = require('./db/mongoose');
+const {authenticate} = require('./middleware/authenticate');
+const {User} = require('./models/user');
 const bodyParser = require('body-parser');
+const _ = require('lodash');
 
 var app = express();
 var publicPath = path.join(__dirname, '../public');
@@ -38,6 +42,8 @@ app.post(('/search'), (req, res) => {
   });
 });
 
+
+
 app.post(('/searchmany'), (req, res) => {
 
   let promiseArray = req.body.queryArray.filter(query => query !== '').map(query => {
@@ -63,9 +69,30 @@ app.get(('/results'), (req, res) => {
   res.render('results.hbs');
 });
 
+app.get(('/me'), authenticate, (req, res) => {
+  res.send(req.user);
+});
+
 app.get(('/bulksearch'), (req, res) => {
   res.render('bulk.hbs');
+});
+
+app.get(('/register'), (req, res) => {
+  res.render("register.hbs");
 })
+
+app.post(('/createUser'), (req, res) => {
+  let body = _.pick(req.body, ['email', 'password']);
+  let user = new User(body);
+
+  user.save().then((user) => {
+    return user.generateAuthToken();
+  }).then((token) => {
+    res.header('x-auth', token).send(user);
+  }).catch((e) => {
+    res.status(400).send(e);
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server is on port ${port}`);
