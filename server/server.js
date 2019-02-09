@@ -79,7 +79,11 @@ app.get(('/bulksearch'), (req, res) => {
 
 app.get(('/register'), (req, res) => {
   res.render("register.hbs");
-})
+});
+
+app.get(('/test'), (req,res) => {
+  res.render("test.hbs");
+});
 
 app.post(('/createUser'), (req, res) => {
   let body = _.pick(req.body, ['email', 'password']);
