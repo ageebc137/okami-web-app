@@ -8,6 +8,8 @@ const axios = require('axios');
 const mongoose = require('./db/mongoose');
 const {authenticate} = require('./middleware/authenticate');
 const {User} = require('./models/user');
+const {Account} = require('./models/account');
+const {ObjectId} = require('mongodb');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 
@@ -85,17 +87,31 @@ app.get(('/test'), (req,res) => {
   res.render("test.hbs");
 });
 
-app.post(('/createUser'), (req, res) => {
-  let body = _.pick(req.body, ['email', 'password']);
-  let user = new User(body);
+app.get(('/login'), (req,res) => {
+  res.header('login.hbs');
+})
 
-  user.save().then((user) => {
+app.post(('/createUser'), (req, res) => {
+  let body = _.pick(req.body, ['email', 'password', 'firstName', 'lastName','city', 'state']);
+  let user = new User(body);
+  let tokenauth;
+
+  user.save().then(() => {
     return user.generateAuthToken();
   }).then((token) => {
-    res.header('x-auth', token).send(user);
+      body._userid = new ObjectId(user._id);
+      let account = new Account(body);
+      account.save().then(() => {
+        res.header('x-auth', token).send({user, account});
+      }).catch((e) => {
+        res.status(400).send(e);
+      });
+
   }).catch((e) => {
     res.status(400).send(e);
   });
+
+
 });
 
 app.listen(port, () => {
