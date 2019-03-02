@@ -13,6 +13,7 @@ const {ObjectId} = require('mongodb');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 
+
 var app = express();
 var publicPath = path.join(__dirname, '../public');
 var partialsPath = path.join(__dirname, '../views/partials');
@@ -83,36 +84,62 @@ app.get(('/register'), (req, res) => {
   res.render("register.hbs");
 });
 
+// New webpages below this
+
 app.get(('/test'), (req,res) => {
   res.render("test.hbs");
 });
 
 app.get(('/login'), (req,res) => {
-  res.header('login.hbs');
-})
+  res.render('login.hbs');
+});
+
+app.get(('/bulksearchtest'), (req,res) => {
+  res.render('bulk-test.hbs');
+});
+
+app.get(('/profiletest'), (req,res) => {
+  res.render('profile-test.hbs');
+});
 
 app.post(('/createUser'), (req, res) => {
   let body = _.pick(req.body, ['email', 'password', 'firstName', 'lastName','city', 'state']);
   let user = new User(body);
-  let tokenauth;
 
   user.save().then(() => {
-    return user.generateAuthToken();
-  }).then((token) => {
       body._userid = new ObjectId(user._id);
       let account = new Account(body);
-      account.save().then(() => {
-        res.header('x-auth', token).send({user, account});
-      }).catch((e) => {
-        res.status(400).send(e);
+      return account.save().then(() => {
+          res.send({user, account});
       });
-
   }).catch((e) => {
     res.status(400).send(e);
   });
 
-
 });
+
+app.get('/termsofservice', (req,res) => {
+  res.render('termsofservice.hbs');
+})
+
+app.post(('/getUser'), (req, res) => {
+
+  let body = _.pick(req.body, ['email', 'password']);
+
+  User.findByCredentials(body.email, body.password).then((user) => {
+    Account.findByUserId(user._id)
+      .then((account) => {
+            res.send({account});
+          });
+    }).catch((e) => {
+        res.status(400).send();
+  });
+});
+
+
+app.get(('/results-test'), (req, res) => {
+  res.render('results-test.hbs');
+})
 
 app.listen(port, () => {
   console.log(`Server is on port ${port}`);
