@@ -19,7 +19,7 @@ function addName(e) {
 
   if (input === "") return;
 
-  if (batch.length === 15) return message.innerHTML = `<i>List has reached its maximum length of 15</i>`;
+  if (batch.length === 30) return message.innerHTML = `<i>List has reached its maximum length of 30</i>`;
 
   if (batch.find((item) => item === input) === undefined) {
     batch.push(input);
