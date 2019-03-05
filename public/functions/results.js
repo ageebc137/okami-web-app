@@ -31,7 +31,7 @@ function searchMany(queryArray) {
 
   // //localhost:3000/searchmany
   // https://okami-sanctions.herokuapp.com/searchmany
-  axios.post('//localhost:3000/searchbatch', {queryArray}).then((res) => {
+  axios.post('https://okami-sanctions.herokuapp.com/searchbatch', {queryArray}).then((res) => {
     let responseArray = res.data;
     resultsMessage.innerHTML = 'Your bulk search results are listed below';
     resultsStorage = [];
