@@ -64,7 +64,7 @@ function searchOne(query) {
   console.log(queryURI);
   // //localhost:3000/search
   // https://okami-sanctions.herokuapp.com/search
-  axios.post('https://okami-sanctions.herokuapp.com/', {queryURI}).then((res) => {
+  axios.post('https://okami-sanctions.herokuapp.com/search', {queryURI}).then((res) => {
     console.log(res);
     //Store response data into local storage.
     localStorage.setItem('results', JSON.stringify(res.data.results));
