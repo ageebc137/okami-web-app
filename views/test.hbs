@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Scrolling Nav - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./bootstrap-design/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="./bootstrap-design/scrolling-nav.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Archivo:400,500,600,700" rel="stylesheet">
+</head>
+<style>
+
+  body {
+    font-family: 'Archivo', sans-serif;
+  }
+  video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100vw;
+    min-height:100vh;
+    z-index: -1;
+  }
+  header{
+    min-height: 100vh;
+    opacity: 0.9;
+    background-color: black;
+    padding-top: 30vh;;
+  }
+  header #title {
+    font-size: 100px;
+    color: #00BDFF;
+  }
+  header #subtitle {
+    font-size: 25px;
+  }
+  .btn-primary {
+    background-color: #00BDFF;
+    border-color: #00BDFF;
+  }
+  .btn-primary:hover {
+    background-color: grey;
+    border-color: grey;
+  }
+
+
+  .nav-link:hover, .navbarbrand:hover {
+    color: #00BDFF;
+  }
+
+  #about {
+    background-color: white;
+  }
+  #contact {
+    color: white;
+  }
+
+</style>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><b>&#332;kami</b></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/register">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <video autoplay muted loop id='financeVideo'>
+    <source src='video/earthpurpleedit.mp4' type='video/mp4'>
+    Your broswer does not support HTML5 video.
+  </video>
+
+  <header class="text-white">
+    <div class="container text-center">
+
+      <h1 id="title"><b>&#332;kami </b></h1>
+      <p id="subtitle">Sanctions Solutions <i>(beta)</i></p>
+      <form>
+        <div class="form-row">
+          <div class="col-12 col-md-9 mb-2 mb-md-0">
+            <input type="text" class="form-control form-control-lg" placeholder="Search individual or entity...">
+          </div>
+          <div class="col-12 col-md-3">
+            <button type="submit" class="btn btn-block btn-lg btn-primary">Try It</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h1>About &#332;kami</h1>
+            <p>&#332;kami is a compliance resource tool which provides financial institutions (FIs)
+              and non-FIs to search for information on individuals and entities listed by the U.S. Treasury, State and Commerce departments.
+              The word <i>&#332;kami</i> (狼) means <i>wolf</i> in Japanese and signifies the idea that &#332;kami acts as
+               a tool to hunt down blacklisted names so that companies can bolster their financial compliance and intelligence programs and
+               stay compliant with sanctions regulations.
+            </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h1>Why Okami?</h1>
+          <p>International trade sanctions have affected numerous companies over the years, resulting in millions of dollars in penalties as a consequence
+            of non-compliance with government regulations. Just in 2018, companies paid approximately $61 million just in penalties enforced by the U.S. Treasury Department's
+            Office of Foreign Assets Control. Whether you are a financial institution (FIs), such as a bank or credit union,
+              or a non-FI, such as a trading company,  &#332;kami allows you
+            to be compliant with regulatory obligations by allowing firms to search for blacklisted names to bolster your Know Your Business programs.</p>
+          <p>Users can conduct sanctions searches such as <i>Osama Bin Laden</i> or <i>Saddam Hussein</i> in the following program lists: </p>
+            <ul>
+              <li>Office of Foreign Assets Control (OFAC - Treasury)</li>
+              <li>Bureau of Industry and Security (BIS - Commerce)</li>
+              <li>Bureau of International Security and Non-Profileration (ISN - State)</li>
+              <li>Directorate of Defense Trade Controls (DDTC - State)</li>
+            </ul>
+            <p>Features included in &#332;kami after setting up user account:</p>
+            <ul>
+              <li><b>Batch</b> search up to 30 names using a dynamic list</li>
+              <li>Saving sanctions reports for future reference in user account</li>
+              <li>Printing sanctions reports</li>
+            </ul>
+            <p>In development: United Kingdom Treasury, United Nations and European Union lists.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h1 id="section-title">Contact &#332;kami</h1>
+            <p id="section-paragraph">Please contact us for any questions/troubleshooting you may need. Additionally,
+              please inform us if you happen to see bugs and erros or want to provide software suggestions which could help to improve and refine
+              the website. Thank you!
+            </p>
+            <p>Email: <i> help-okami-sanctions@mail.com </i></p>
+            <p>Phone: <i>+1 (510) 403-1613 </i></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+        <ul class="text-center list-inline">
+            <li class="text-left list-inline-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="text-left list-inline-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+            </li>
+            <li class="text-left list-inline-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="text-left list-inline-item">
+              <a class="nav-link js-scroll-trigger" href="/termsofservice">Terms of Service</a>
+            </li>
+        </ul>
+      <p class="m-0 text-center text-white" >Copyright &copy; 2019 Okami Sanctions Solutions. All rights reserved.</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="./bootstrap-design/jquery/jquery.min.js"></script>
+  <script src="./bootstrap-design/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="./boostrap-design/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <!-- <script src="./bootstrap-design/scrolling-nav.js"></script> -->
+
+</body>
+
+</html>

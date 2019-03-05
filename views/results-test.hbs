@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>&#332;kami Sanctions Solutions</title>
+      <link href="./bootstrap-design/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="./bootstrap-design/scrolling-nav.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+  <style>
+
+  body {
+    background: linear-gradient(to right, #0078A2, #689DB0);
+  }
+
+  section.pricing {
+
+    background: linear-gradient(to right, #0078A2, #689DB0);
+    height: 100vh;
+  }
+
+      .pricing .card {
+      border: none;
+      border-radius: 1rem;
+      transition: all 0.2s;
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .pricing hr {
+      margin: 1.5rem 0;
+      }
+
+      .pricing .card-title {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      letter-spacing: .1rem;
+      font-weight: bold;
+      }
+
+      .pricing .card-price {
+      font-size: 3rem;
+      margin: 0;
+      }
+
+      .pricing .card-price .period {
+      font-size: 0.8rem;
+      }
+
+      .pricing ul li {
+      margin-bottom: 1rem;
+      }
+
+      .pricing .text-muted {
+      opacity: 0.7;
+      }
+
+      .pricing .btn {
+      font-size: 80%;
+      border-radius: 5rem;
+      letter-spacing: .1rem;
+      font-weight: bold;
+      padding: 1rem;
+      opacity: 0.7;
+      transition: all 0.2s;
+      }
+
+      /* Hover Effects on Card */
+
+      @media (min-width: 992px) {
+      .pricing .card:hover {
+        margin-top: -.25rem;
+        margin-bottom: .25rem;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+      }
+      .pricing .card:hover .btn {
+        opacity: 1;
+      }
+
+      .col-lg-4 {
+          -ms-flex: 0  0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
+          top: 5vh;
+      }
+    }
+    #submit {
+      background-color: #00BDFF;
+      border-color: grey;
+    }
+
+    #listResults {
+      overflow-y: auto;
+      height: 500px;
+    }
+
+    img {
+      width: 10%;
+    }
+    #search-form {
+      text-align: center;
+      width: 50%;
+    }
+
+    ul {
+      margin-left: -40px;
+    }
+    li {
+      list-style-type: none;
+    }
+    td{
+      font-size: 12px;
+    }
+    #listResults tr:hover {
+      background-color:  #00BDFF;
+    }
+    #profileContainer {
+    position: fixed;
+    margin-top: 6vh;
+    width: 600px;
+    left: 50vw;
+    font-size: 12px;
+    }
+
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/test"><b>&#332;kami</b></a>
+        <form id="search-form">
+          <div class="form-row">
+            <div class="col-12 col-md-9 mb-2 mb-md-0">
+              <input type="text" class="form-control form-control-lg" placeholder="Search individual or entity...">
+            </div>
+            <div class="col-12 col-md-3">
+              <button id="submit" type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
+            </div>
+          </div>
+        </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/bulksearchtest">Batch Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/profiletest">My Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/register">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+      <section class="pricing py-5">
+        <div class="container">
+          <div class="row">
+            <!-- Free Tier -->
+            <div class="col-lg-4">
+              <div class="card mb-5 mb-lg-0">
+                <div class="card-body">
+                    <span class="fa-li"><i class="fas fa-check" id="results-message">Searching for your results....</i></span>
+                    <table class="table table-striped table-dark">
+                          <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Sanctions Program</th>
+                              <th scope="col">Query</th>
+                            </tr>
+                          </thead>
+                          <tbody id="listResults">
+                          </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+            <!-- Plus Tier -->
+            <div id="profileContainer" class="col-lg-4">
+              <div class="card mb-5 mb-lg-0">
+                <div class="card-body">
+                  <div id="profile">
+                    <ul id='details'>
+                      <p>Please select a result in the listing.</p>
+                    </ul>
+                    <table id='identifications'>
+                    </table>
+                    <table id='aliases'>
+                    </table>
+                    <table id='addresses'>
+                    </table>
+                    <div id='source'></div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <!-- Pro Tier -->
+          </div>
+        </div>
+      </section>
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="functions/results-test.js"></script>
+
+</html>
