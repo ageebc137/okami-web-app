@@ -224,7 +224,8 @@ function displayProfile(id) {
       let sdnId = sdn.id;
       let user = body.user;
       let _userid = body.user._id;
-      axios.post('//localhost:3000/delete', {_userid, sdnId}).then((res) => {
+      // https://okami-sanctions.herokuapp.com/getuser
+      axios.post('https://okami-sanctions.herokuapp.com/delete', {_userid, sdnId}).then((res) => {
           let data = {};
            data.account = res.data;
           data.user = user;

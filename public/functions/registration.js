@@ -28,7 +28,7 @@ function createUserAccount(e) {
           password
   }
 
-  axios.post('//localhost:3000/createaccount', userObj)
+  axios.post('https://okami-sanctions.herokuapp.com/createaccount', userObj)
       .then((res) => {
         let data = res.data;
         localStorage.setItem("profile", JSON.stringify(data));

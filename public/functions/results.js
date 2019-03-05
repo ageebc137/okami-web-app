@@ -65,7 +65,7 @@ function searchOne(query) {
   console.log(queryURI);
   // //localhost:3000/search
   // https://okami-sanctions.herokuapp.com/search
-  axios.post('//localhost:3000/search', {queryURI}).then((res) => {
+  axios.post('https://okami-sanctions.herokuapp.com/search', {queryURI}).then((res) => {
     console.log(res);
     //Store response data into local storage.
     localStorage.setItem('results', JSON.stringify(res.data.results));
@@ -281,7 +281,7 @@ function displayProfile(id) {
       let report = sdn;
       let user = body.user;
       let _userid = body.user._id;
-      axios.post('//localhost:3000/update', {_userid, report}).then((res) => {
+      axios.post('https://okami-sanctions.herokuapp.com/update', {_userid, report}).then((res) => {
           let data = {};
           data.account = res.data;
           data.user = user;
