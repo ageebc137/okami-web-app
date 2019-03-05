@@ -129,10 +129,40 @@ app.post(('/getUser'), (req, res) => {
   User.findByCredentials(body.email, body.password).then((user) => {
     Account.findByUserId(user._id)
       .then((account) => {
-            res.send({account});
+            res.send({account, user});
           });
     }).catch((e) => {
         res.status(400).send();
+  });
+});
+
+app.post(('/update'), (req, res) => {
+  let id = new ObjectId(req.body._userid);
+  let report = req.body.report;
+  Account.findByUserId(id).then((account) => {
+    return account.addReport(report);
+  }).then((response) => {
+    return Account.findByUserId(id);
+  }).then((account) => {
+    res.send(account);
+  }).catch((e) => {
+    res.send(e);
+  });
+});
+
+app.post(('/delete'), (req, res) => {
+  console.log(req.body);
+  let id = new ObjectId(req.body._userid);
+  let sdnId = req.body.sdnId;
+  Account.findByUserId(id).then((account) => {
+    console.log(account);
+    return account.deleteReport(sdnId);
+  }).then((response) => {
+    return Account.findByUserId(id);
+  }).then((account) => {
+    res.send(account);
+  }).catch((e) => {
+    res.send(e);
   });
 });
 
