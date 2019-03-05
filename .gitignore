@@ -1,2 +1,4 @@
 node_modules/
 .env
+views/other/
+public/functions/other/

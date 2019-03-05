@@ -24,15 +24,7 @@ app.use(express.static(publicPath));
 hbs.registerPartials(partialsPath);
 
 app.get(('/'), (req, res) => {
-  res.render('home.hbs');
-});
-
-app.get(('/about'), (req, res) => {
-  res.render('about.hbs');
-});
-
-app.get(('/contacts'), (req, res) => {
-  res.render('contacts.hbs');
+  res.render('homepage.hbs');
 });
 
 app.get(('/login'), (req, res) => {
@@ -45,9 +37,7 @@ app.post(('/search'), (req, res) => {
   });
 });
 
-
-
-app.post(('/searchmany'), (req, res) => {
+app.post(('/searchbatch'), (req, res) => {
 
   let promiseArray = req.body.queryArray.filter(query => query !== '').map(query => {
     let  queryURI = encodeURIComponent(query),
@@ -72,37 +62,24 @@ app.get(('/results'), (req, res) => {
   res.render('results.hbs');
 });
 
-app.get(('/me'), authenticate, (req, res) => {
-  res.send(req.user);
-});
 
 app.get(('/bulksearch'), (req, res) => {
   res.render('bulk.hbs');
 });
 
-app.get(('/register'), (req, res) => {
-  res.render("register.hbs");
+app.get(('/join'), (req, res) => {
+  res.render("registration.hbs");
 });
 
-// New webpages below this
-
-app.get(('/test'), (req,res) => {
-  res.render("test.hbs");
+app.get(('/batchsearch'), (req,res) => {
+  res.render('batchpage.hbs');
 });
 
-app.get(('/login'), (req,res) => {
-  res.render('login.hbs');
+app.get(('/myaccount'), (req,res) => {
+  res.render('profilepage.hbs');
 });
 
-app.get(('/bulksearchtest'), (req,res) => {
-  res.render('bulk-test.hbs');
-});
-
-app.get(('/profiletest'), (req,res) => {
-  res.render('profile-test.hbs');
-});
-
-app.post(('/createUser'), (req, res) => {
+app.post(('/createaccount'), (req, res) => {
   let body = _.pick(req.body, ['email', 'password', 'firstName', 'lastName','city', 'state']);
   let user = new User(body);
 
@@ -120,9 +97,9 @@ app.post(('/createUser'), (req, res) => {
 
 app.get('/termsofservice', (req,res) => {
   res.render('termsofservice.hbs');
-})
+});
 
-app.post(('/getUser'), (req, res) => {
+app.post(('/getuser'), (req, res) => {
 
   let body = _.pick(req.body, ['email', 'password']);
 
@@ -166,10 +143,13 @@ app.post(('/delete'), (req, res) => {
   });
 });
 
+app.get(('/tryit'), (req, res) => {
+  res.render('trialresults.hbs');
+});
 
-app.get(('/results-test'), (req, res) => {
-  res.render('results-test.hbs');
-})
+app.get(('/results'), (req, res) => {
+  res.render('results.hbs');
+});
 
 app.listen(port, () => {
   console.log(`Server is on port ${port}`);

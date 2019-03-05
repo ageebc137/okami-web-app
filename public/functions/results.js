@@ -1,23 +1,26 @@
 //Declare HTML elements from results.hbs
 let results = document.querySelector('#listResults'),
-      resultsMessage = document.querySelector('#resultsMessage'),
-      searchBox = document.querySelector('#searchName');
+      resultsMessage = document.querySelector('#results-message'),
+      searchForm = document.querySelector('#search-form'),
+      signOut = document.getElementById('signout');
 
 
 
 function searchForResults(e) {
   //Prevent a refresh of the page.
   e.preventDefault();
+
   //set the query to either the home page's or the result's
   let searchItem = {};
-  if (searchBox.querySelector('input').value) {
+  if (searchForm.querySelector('input').value) {
     searchItem.type = 'single';
-    searchItem.query = searchBox.querySelector('input').value;
+    searchItem.query = searchForm.querySelector('input').value;
   }else if (localStorage.getItem('searchItem')) {
     searchItem = JSON.parse(localStorage.getItem('searchItem'));
   }else {
     return;
   }
+  console.log(searchItem);
 
   searchItem.type === 'bulk' ? searchMany(searchItem.query) : searchOne(searchItem.query);
 
@@ -28,7 +31,7 @@ function searchMany(queryArray) {
 
   // //localhost:3000/searchmany
   // https://okami-sanctions.herokuapp.com/searchmany
-  axios.post('https://okami-sanctions.herokuapp.com/searchmany', {queryArray}).then((res) => {
+  axios.post('//localhost:3000/searchbatch', {queryArray}).then((res) => {
     let responseArray = res.data;
     resultsMessage.innerHTML = 'Your bulk search results are listed below';
     resultsStorage = [];
@@ -49,6 +52,8 @@ function searchMany(queryArray) {
     }).join('');
     console.log(resultsStorage);
     localStorage.setItem('results', JSON.stringify(resultsStorage));
+  }).catch((e) => {
+    console.log(e);
   });
 
 }
@@ -57,9 +62,10 @@ function searchMany(queryArray) {
 
 function searchOne(query) {
   let  queryURI = encodeURIComponent(query);
+  console.log(queryURI);
   // //localhost:3000/search
   // https://okami-sanctions.herokuapp.com/search
-  axios.post('https://okami-sanctions.herokuapp.com/search', {queryURI}).then((res) => {
+  axios.post('//localhost:3000/search', {queryURI}).then((res) => {
     console.log(res);
     //Store response data into local storage.
     localStorage.setItem('results', JSON.stringify(res.data.results));
@@ -104,7 +110,6 @@ function displayProfile(id) {
       identifications,
       aliases,
       addresses;
-      console.log(sdn);
   let source = sdn.source;
   if (source === "Specially Designated Nationals (SDN) - Treasury Department") {
 
@@ -114,8 +119,8 @@ function displayProfile(id) {
 
     details = `
       <img src='/logos/${sdn.type.toLowerCase()}-icon.png' alt='${sdn.type} logo'>
-      <li id='type'><b>Type:</b> ${sdn.type}</li>
       <li id='fullName'><b>Full Name:</b> ${sdn.name}</li>
+      <li id='type'><b>Type:</b> ${sdn.type}</li>
       <li id='listDesignation'><b>List:</b> ${sdn.source}</li>
       <li id='listPrograms'><b>Programs:</b> ${programs}</li>
       <li id='dateOfBirth'><b>Date of Birth: </b>${dateOfBirth || 'N/A'}</li>
@@ -213,6 +218,20 @@ function displayProfile(id) {
        `;
      }).join('') || "" );
 
+  }else if (source === "Denied Persons List (DPL) - Bureau of Industry and Security") {
+    details = `
+      <li id='fullName'><b>Full Name:</b> ${sdn.name}
+      <li id='program'><b>Program:</b> ${sdn.source}</li>
+    `;
+    identifications = `
+    <thead>
+      <th><u>ID #</u></th>
+    </thead>
+    <tr>
+     <td>${sdn.id}</td>
+    </tr>`;
+    aliases = '';
+    addresses = '';
   }else{
     details = `
       <li id='fullName'><b>Full Name:</b> ${sdn.name}
@@ -250,8 +269,41 @@ function displayProfile(id) {
   document.querySelector('#addresses').innerHTML = addresses;
 
   document.querySelector('#source').innerHTML =
-   `For more information please check out <a href='${sdn.source_information_url}' target='_blank'>this link</a>`
+   `<p>For more information please check out <a href='${sdn.source_information_url}' target='_blank'>this link</a></p>
+   <button id="saveReport">Save Report</button>
+   <button onClick="printProfile()" id="print">Print Report</button>
+   `;
+
+   document.querySelector('#saveReport').addEventListener('click', function(e) {
+      let body = JSON.parse(localStorage.getItem('profile'));
+      let index = body.account.reports.find((report) => report.id === sdn.id);
+      if (index !== undefined) return;
+      let report = sdn;
+      let user = body.user;
+      let _userid = body.user._id;
+      axios.post('//localhost:3000/update', {_userid, report}).then((res) => {
+          let data = {};
+          data.account = res.data;
+          data.user = user;
+          localStorage.setItem('profile', JSON.stringify(data));
+      });
+   });
+}
+
+function printProfile() {
+  let printContent = document.querySelector('#profile').innerHTML;
+  let originalContent = document.body.innerHTML;
+  document.body.innerHTML = printContent;
+  window.print();
+  document.body.innerHTML = originalContent;
+}
+
+
+function handleSignOut(e) {
+  localStorage.removeItem('profile');
+  window.location.href = '/';
 }
 
 window.onload = searchForResults;
-searchBox.addEventListener('submit', searchForResults);
+searchForm.addEventListener('submit', searchForResults);
+signOut.addEventListener('click', handleSignOut)

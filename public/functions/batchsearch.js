@@ -3,6 +3,8 @@ let listDisplay = document.querySelector('#searchList');
 const removeAllButton = document.querySelector('#removeAllButton');
 let message = document.querySelector('#listMessage');
 const searchButton = document.querySelector('#searchButton');
+let signOut = document.querySelector('#signout');
+
 let batch = [];
 
 
@@ -74,10 +76,16 @@ function searchBatch(e) {
     query: batch
   }));
 
-  window.location.href = "/results-test";
+  window.location.href = "/results";
+}
+
+function handleSignOut(e) {
+  localStorage.removeItem('profile');
+  window.location.href = '/';
 }
 
 removeAllButton.onclick = handleRemoveAll;
 searchButton.addEventListener('click', searchBatch);
 window.onload = refreshBatch;
 inputForm.addEventListener('submit', addName);
+signOut.addEventListener('click', handleSignOut);

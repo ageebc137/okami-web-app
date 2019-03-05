@@ -1,6 +1,5 @@
 const   formField = document.querySelector('form'),
         message = document.querySelector('#message');
-let email;
 
 function createUserAccount(e) {
   e.preventDefault();
@@ -17,7 +16,7 @@ function createUserAccount(e) {
     return;
   }
 
-  email = document.querySelector('#inputEmail').value;
+  let email = document.querySelector('#inputEmail').value;
 
 
   const userObj = {
@@ -29,11 +28,11 @@ function createUserAccount(e) {
           password
   }
 
-  axios.post('//localhost:3000/createUser', userObj)
+  axios.post('//localhost:3000/createaccount', userObj)
       .then((res) => {
         let data = res.data;
         localStorage.setItem("profile", JSON.stringify(data));
-        window.location.href = "/profiletest";
+        window.location.href = "/myaccount";
       })
       .catch((e) => {
         message.innerHTML = `<i>Email address <strong>${email}</strong> may already be taken, or email address not formatted correctly.</i>`;

@@ -13,15 +13,15 @@
   </head>
   <style>
 
-      body {
-            background: linear-gradient(to right, #0078A2, #689DB0);
-      }
+  body {
+    background: linear-gradient(to right, #0078A2, #689DB0);
+  }
 
-      section.pricing {
+  section.pricing {
 
-        background: linear-gradient(to right, #0078A2, #689DB0);
-        height: 100vh;
-      }
+    background: linear-gradient(to right, #0078A2, #689DB0);
+    height: 100vh;
+  }
 
       .pricing .card {
       border: none;
@@ -92,10 +92,6 @@
       border-color: grey;
     }
 
-    #listResults {
-      overflow-y: auto;
-      height: 500px;
-    }
 
     img {
       width: 10%;
@@ -106,16 +102,32 @@
     }
 
     ul {
-      margin-left: -40px;
+    margin-left: -40px;
     }
+
     li {
-      list-style-type: none;
+    list-style-type: none;
     }
+
     td{
-      font-size: 12px;
+    font-size: 10px;
     }
+
     #listResults tr:hover {
-      background-color:  #00BDFF;
+    background-color:  #00BDFF;
+    }
+
+    #profileContainer {
+    position: fixed;
+    margin-top: 6vh;
+    width: 600px;
+    left: 50vw;
+    font-size: 12px;
+    height: 50vh;
+    }
+    .card-body{
+    max-height: 85vh;
+    overflow-y: auto;
     }
 
 
@@ -123,7 +135,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/test"><b>&#332;kami</b></a>
+        <a class="navbar-brand js-scroll-trigger" href="/"><b>&#332;kami</b></a>
         <form id="search-form">
           <div class="form-row">
             <div class="col-12 col-md-9 mb-2 mb-md-0">
@@ -142,51 +154,39 @@
 
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/bulksearchtest">Batch Search</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/register">Sign Out</a>
+              <a class="nav-link js-scroll-trigger" href="/join">Sign Up</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
       <section class="pricing py-5">
-
         <div class="container">
           <div class="row">
             <!-- Free Tier -->
-                <div class="col-lg-4">
-                  <div class="card mb-5 mb-lg-0">
-                    <div class="card-body">
-                        <h3>My Account</h3>
-                          <li id="firstName"><i>First Name: </i>Allister</li>
-                          <li id="lastName"><i>Last Name:</i> Bernal</li>
-                          <li id="cityName"><i>City:</i> San Lorenzo</li>
-                          <li id="stateName"><i>State:</i> California</li>
-                    </div>
-                  </div>
-                      <div class="card mb-5 mb-lg-0">
-                        <div class="card-body">
-                            <p>Your saved reports: </p>
-                          <table class="table table-hover table-striped table-dark">
-                              <thead>
-                                <tr>
-                                  <th scope="col">Name</th>
-                                  <th scope="col">Type</th>
-                                  <th scope="col">Sanctions Program</th>
-                                </tr>
-                              </thead>
-                              <tbody id="listResults">
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                    </div>
+            <div class="col-lg-4">
+              <div class="card mb-5 mb-lg-0">
+                <div class="card-body">
+                    <span class="fa-li"><i class="fas fa-check" id="results-message">Searching for your results....</i></span>
+                    <table class="table table-striped table-dark">
+                          <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Sanctions Program</th>
+                              <th scope="col">Query</th>
+                            </tr>
+                          </thead>
+                          <tbody id="listResults">
+                          </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
             <!-- Plus Tier -->
             <div id="profileContainer" class="col-lg-4">
               <div class="card mb-5 mb-lg-0">
-                <div class="card-body">
+                <div id="report" class="card-body">
                   <div id="profile">
                     <ul id='details'>
                       <p>Please select a result in the listing.</p>
@@ -209,6 +209,6 @@
       </section>
   </body>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="functions/profile-test.js"></script>
+  <script src="functions/trialresults.js"></script>
 
 </html>
