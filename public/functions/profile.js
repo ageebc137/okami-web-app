@@ -4,6 +4,8 @@ let tableReports = document.querySelector('#listResults');
 let signOut = document.querySelector('#signout');
 
 function uploadProfile() {
+  profile  = JSON.parse(localStorage.getItem('profile'));
+
  if (!profile) {return window.location.href = "/login"};
 
  document.querySelector('#firstName').innerHTML = `<i>First Name:</i><b> ${profile.account.firstName}</b>`;
