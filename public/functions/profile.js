@@ -27,6 +27,9 @@ function handleSearchForm(e) {
 }
 
 function displayReports() {
+
+  uploadProfile();
+
   tableReports.innerHTML = profile.account.reports.map((sdn) => {
     return `
       <tr onclick="displayProfile('${sdn.id}')" id='${sdn.id}'>
@@ -251,7 +254,7 @@ function handleSignOut(e) {
   window.location.href = '/';
 }
 
-window.onload = uploadProfile;
-// window.onload = displayReports;
+// window.onload = uploadProfile;
+window.onload = displayReports;
 searchForm.addEventListener('submit', handleSearchForm);
 signOut.addEventListener('click', handleSignOut);
