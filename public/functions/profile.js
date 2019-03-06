@@ -4,6 +4,7 @@ let tableReports = document.querySelector('#listResults');
 let signOut = document.querySelector('#signout');
 
 function uploadProfile() {
+
   profile  = JSON.parse(localStorage.getItem('profile'));
 
  if (!profile) {return window.location.href = "/login"};
@@ -251,6 +252,6 @@ function handleSignOut(e) {
 }
 
 window.onload = uploadProfile;
-window.onload = displayReports;
+// window.onload = displayReports;
 searchForm.addEventListener('submit', handleSearchForm);
 signOut.addEventListener('click', handleSignOut);
