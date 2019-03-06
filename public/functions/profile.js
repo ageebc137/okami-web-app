@@ -5,8 +5,6 @@ let signOut = document.querySelector('#signout');
 
 function uploadProfile() {
 
-  profile  = JSON.parse(localStorage.getItem('profile'));
-
  if (!profile) {return window.location.href = "/login"};
 
  document.querySelector('#firstName').innerHTML = `<i>First Name:</i><b> ${profile.account.firstName}</b>`;
@@ -56,7 +54,7 @@ function displayResults(res, query) {
 }
 
 function displayProfile(id) {
-  let sdn = JSON.parse(localStorage.getItem('results')).find(sdn => sdn.id == id),
+  let sdn = profile.account.reports.find(sdn => sdn.id == id),
       details,
       identifications,
       aliases,
