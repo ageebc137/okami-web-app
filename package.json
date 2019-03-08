@@ -17,6 +17,7 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "hbs": "^4.0.1",
+    "heroku-ssl-redirect": "0.0.4",
     "jquery": "^3.3.1",
     "jquery.easing": "^1.4.1",
     "jsonwebtoken": "^8.4.0",

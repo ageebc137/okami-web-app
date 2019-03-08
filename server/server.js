@@ -12,12 +12,18 @@ const {Account} = require('./models/account');
 const {ObjectId} = require('mongodb');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
+var sslRedirect = require('heroku-ssl-redirect');
+
+
 
 
 var app = express();
 var publicPath = path.join(__dirname, '../public');
 var partialsPath = path.join(__dirname, '../views/partials');
 let port = process.env.PORT;
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 app.use(bodyParser.json());
 app.use(express.static(publicPath));
