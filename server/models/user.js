@@ -68,23 +68,6 @@ UserSchema.statics.findByCredentials = function(email, password) {
   });
 }
 
-UserSchema.statics.findByToken = function(token) {
-  var User = this;
-  var decoded;
-
-  try {
-    decoded = jwt.verify(token, process.env.JWT_CODE);
-  } catch (e) {
-    return Promise.reject();
-  }
-
-  return User.findOne({
-    "_id": decoded._id,
-    "tokens.token": token,
-    "tokens.access": "auth"
-  });
-}
-
 
 UserSchema.pre('save', function(next) {
   var user = this;

@@ -6,7 +6,6 @@ const yargs = require('yargs');
 const path = require('path');
 const axios = require('axios');
 const mongoose = require('./db/mongoose');
-const {authenticate} = require('./middleware/authenticate');
 const {User} = require('./models/user');
 const {Account} = require('./models/account');
 const {ObjectId} = require('mongodb');
