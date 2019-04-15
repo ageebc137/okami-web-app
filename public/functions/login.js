@@ -7,7 +7,7 @@ function submitEmailPassword(e) {
   const email = document.querySelector('#inputEmail').value;
   const password = document.querySelector('#inputPassword').value;
   //localhost:3000
-  axios.post(('https://okami-sanctions.herokuapp.com/getuser'), {email, password}).then((res) => {
+  axios.post(('/getuser'), {email, password}).then((res) => {
     let data = res.data;
     localStorage.setItem('profile',JSON.stringify(data));
     window.location.href="/myaccount";
